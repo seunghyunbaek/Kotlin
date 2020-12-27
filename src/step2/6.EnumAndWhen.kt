@@ -12,24 +12,19 @@ import step2.Color.*
 //    RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
 //}
 
+// enum에서도 일반적인 클래스와 마찬가지로 생성자와 프로퍼티를 선언한다.
 enum class Color(
         val r: Int, val g: Int, val b: Int // 상수의 프로퍼티를 정의
 ) {
     RED(255, 0, 0), ORANGE(255, 165, 0), // 각 상수를 생성할 때 그에 대한 프로퍼티 값을 지정해야 한다.
     YELLOW(255, 255, 0), GREEN(0, 255, 0), BLUE(0, 0, 255),
-    INDIGO(75, 9, 130), VIOLET(238, 130, 238); // 여기 반드시 세미콜론을 사용해야 한다.
+    INDIGO(75, 9, 130), VIOLET(238, 130, 238); // enum 클래스안에 메소드를 정의하는 경우 반드시 상수목록과 메소드 정의사이에 세미콜론을 사용해야 한다.
 
     fun rgb() = (r * 256 + g) * 256 + b // enum 클래스 안에서 메소드를 정의한다.
 }
 
-// enum에서도 일반적인 클래스와 마찬가지로 생성자와 프로퍼티를 선언한다.
-// 이 예제에서는 코틀린에서 유일하게 세미콜론(;)이 필수인 부분을 볼 수 있다.
-// enum 클래스 안에 메소드를 정의하는 경우 반드시 enum 상수 목록과 메소드 정의 사이에 세미콜론을 넣어야 한다.
-
-
 // when은 자바의 switch를 대치하되 훨씬 더 강력하며, 자주 사용할 프로그래밍 요소이다.
 // if와 마찬가지로 when도 값을 만들어내는 식(expression)이다.
-
 fun getMnemonic(color: Color) =
         when (color) {
             Color.RED -> "Richard" // 각 분기의 끝에 braek를 넣지 않아도 된다.
