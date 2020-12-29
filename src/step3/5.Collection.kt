@@ -40,9 +40,6 @@ public fun <T> listOf(vararg elements: T): List<T> = if (elements.size > 0) elem
 // 실제로 to는 제네릭 함수지만 여기서는 설명을 위해 그런 세부 사항을 생략했다.
 // Pair의 내용으로 두 변수를 즉시 초기화할 수 있다.
 
-// Pair인스턴스 외 다른 객체에도 구조 분해를 적용할 수 있다.
-// 예를 들어 key와 value라는 두 변수를 맵의 원소를 사용해 초기화 할 수 있다.
-
 infix fun Any.to(other: Any) = Pair(this, other)
 
 fun main(args: Array<String>) {
@@ -59,7 +56,27 @@ fun main(args: Array<String>) {
     1.to("one") // "to" 메소드를 일반적인 방식으로 호출함
     1 to "one" // "to" 메소드를 중위 호출 방식으로 호출함
 
+    // 이 to 함수는 Pair의 인스턴스를 반환한다. Pair는 코틀린 표준 라이브러리 클래스로, 그 이름대로 두 원소로 이뤄진 순서쌍을 표현한다.
+    // 실제로 to는 제네릭 함수지만 여기서는 설명을 위해 그런 세부 사항을 생략했다.
+
     // Pair의 내용으로 두 변수를 즉시 초기화
     // 이런 기능을 구조 분해 선언(destructuring declaration)이라고 부른다.
     val (number, name) = 1 to "one"
+
+    // Pair 인스턴스 외 다른 객체에도 구조분해를 적용할 수 있다.
+    // 7.4절에서는 식의 구조 분해와 구조 분해를 사용해 여러 변수를 초기화하는 방법에 대한 일반 규칙을 다른다.
+    val collection = listOf(1, 2,3, 4)
+    for((index, element) in collection.withIndex()) {
+        println("$index: $element")
+    }
+
+    // to는 확장 함수다. to를 사용하면 타입과 관계없이 임의의 순서쌍을 만들 수 있다.
+    // 이는 to의 수신 객체가 제네릭하다는 뜻이다.
+
+    // mapOf 함수의 선언을 살펴보자.
+    // listOf와 마찬가지로 mapOf에도 원하는 개수만큼 인자를 전달할 수 있다. 하지만 mapOf의 경우에는 각 인자가 키와 값으로 이뤄진 순서쌍이어야 한다.
+    mapOf(1 to "one", 2 to "two")
+
+    // 코틀린을 잘 모르는 사라밍 보면 새로운 맵을 만드는 구문은 코틀린 맵에 대해 제공하는 특별한 문법인 것처럼 느껴진다.
+    // 하지만 실제로는 일반적인 함수를 더 간결한 구문으로 호출하는 것일 뿐이다.
 }
