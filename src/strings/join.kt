@@ -34,3 +34,4 @@ fun <T> joinToString(collection: Collection<T>,
 // 하지만 확장 함수가 캡슐화를 깨지는 않는다는 사실을 기억하라.
 // 클래스 안에서 정의한 메소드와 달리 확장 함수 안에서는 클래스 내부에서만 사용할 수 있는 비공개(private)멤버나 보호된(protected)멤버를 사용할 수 없다.
 fun String.lastChar(): Char = get(length -1)
+
