@@ -58,6 +58,9 @@ fun main(args: Array<String>) {
 
     val seung = User(isSubscribed = false, nickname = "승현") // 이름을 지정하여 인자를 넣으면 순서를 다르게 지정할 수도 있다.
     println(seung.isSubscribed)
+
+    val rtobit = RtoBit()
+    println(rtobit.up) // false
 }
 
 // 노트
@@ -73,9 +76,9 @@ class TwitterUser(nickname: String): User(nickname) {}
 
 // 클래스를 정의할 때 별도로 생성자를 정의하지 않으면 컴파일러가 자동으로 아무 일도 하지 않는 인자가 없는 디폴트 생성자를 만들어준다.
 open class Button3 // 인자가 없는 디폴트 생성자가 만들어진다.
-class RadioButton: Button3() {} // Button3의 생성자는 아무 인자도 받지 않지만, Button3 클래스를 상속한 하위 클래스는 반드시 Button 클래스의 생성자를 호출해야 한다.
+class RadioButton: Button3() {} // Button3의 생성자는 아무 인자도 받지 않지만, Button3 클래스를 상속한 하위 클래스는 반드시 Button3 클래스의 생성자를 호출해야 한다.
 // 이 규칙으로 인해 기반 클래스의 이름 뒤에는 꼭 빈 괄호가 들어간다(물론 생성자 인자가 있다면 괄호 안에 인자가 들어간다).
-// 인터페이스는 생성자가 없기 때문에 어던 클래스가 인터페이스를 구현하는 경우 그 클래스의 상위 클래스 목록에 있는 인터페이스 이름 뒤에는 아무 괄호도 없다.
+// 인터페이스는 생성자가 없기 때문에 어떤 클래스가 인터페이스를 구현하는 경우 그 클래스의 상위 클래스 목록에 있는 인터페이스 이름 뒤에는 아무 괄호도 없다.
 
 // 어떤 클래스를 클래스 외부에서 인스턴스화하지 못하게 막고 싶다면 모든 생성자를 private으로 만들면 된다.
 class Secretive private constructor() {} // 이 클래스의 (유일한) 주 생성자는 비공개이다.
