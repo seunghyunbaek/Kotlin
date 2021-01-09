@@ -17,6 +17,8 @@ fun main(args: Array<String>) {
     println(joinToString2(list, ";", "(", ")"))
     // 이름 붙인 인자를 사용하는 경우에는 인자 목록의 중간에 있는 인자를 생략하고, 지정하고 싶은 인자를 이름 붙여서 순서와 관계없이 지정할 수 있다.
     println(joinToString2(list, ";", postfix = "(", prefix = ")"))
+
+    println(list.joinToString(separator=";", prefix="[", postfix="]"))
 }
 
 // 처음에는 함수 선언을 간단하게 만들 수 있게 코틀린이 지원하는 여러 기능을 사용하지 않고 함수를 직접 구현한다.

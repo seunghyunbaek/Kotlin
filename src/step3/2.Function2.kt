@@ -43,4 +43,8 @@ const val UNIX_LINE_SEPARATOR = "\n"
 fun main(args: Array<String>) {
     val list = listOf(1, 2, 3)
     println(joinToString(list))
+
+    performOperation()
+    reportOperationCount()
+    println(opCount)
 }
