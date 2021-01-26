@@ -35,8 +35,25 @@ fun addValidNumbers(numbers: List<Int?>) {
     println("Invalid numbers: $invalidNumbers")
 }
 
+fun addValidNumbers2(numbers: List<Int?>) {
+    val validNumbers = numbers.filterNotNull()
+    println("Sum of valid numbers: ${validNumbers.sum()}")
+    println("Invalid numberse: ${numbers.size - validNumbers.size}")
+}
+
 fun main(args: Array<String>) {
     val reader = BufferedReader(StringReader("1\nabc\n42"))
     val numbers = readNumbers(reader)
     addValidNumbers(numbers)
+    addValidNumbers2(numbers)
+
+    val letters = Array<String> (26) { i -> ('a'+i).toString() }
+    println(letters.joinToString(""))
+
+    val strings = listOf("a", "b", "c")
+    println("%s/%s/%s".format(*strings.toTypedArray()))
+
+    letters.forEachIndexed { index, element ->
+        println("$index is : $element")
+    }
 }
