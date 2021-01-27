@@ -404,3 +404,44 @@ fun readNumber(reader: BufferedReader): Int? {
 코틀린에서는 함수가 던지는 예외를 지정하지 않고 발생한 예외를 잡아내도 되고 잡아내지 않아도 된다. 
 
 코틀린의 try 키워드는 if내 when과 마찬가지로 식이다. try 코드 블록의 실행이 정상적으로 끝나면 그 블록의 마지막 식의 값이 결과가 된다.
+
+---
+
+# 함수 정의와 호출
+- 컬렉션, 문자열, 정규식을 다루기 위한 함수
+- 이름 붙인 인자, 디폴트 파라미터 값, 중위 호출 문법 사용
+- 확장 함수와 확장 프로퍼티를 사용해 자바 라이브러리 적용
+- 최상위 및 로컬 함수와 프로퍼티를 사용해 코드 구조화
+
+#### 코틀린에서 컬렉션 만들기
+```kotlin
+val set = hashSetOf(1, 7, 53) // class.java.util.HashSet
+val list = arrayListOf(1, 7, 53) // class.java.util.ArrayList
+val map = hashMapOf(1 to "one", 7 to "seven", 53 to "fifty-three") // class.java.util.HashMap
+```
+여기서 to가 언어가 제공하는 특별한 키워드가 아니라 일반 함수라는 점에 유의하라.  
+
+코틀린은 자신만의 컬렉션 기능을 제공하지 않는다. 코틀린 컬렉션은 자바 컬렉션과 똑같은 클래스다. 
+
+코틀린이 자체 컬렉션을 제공하지 않는 이유는 뭘까?  
+표준 자바 컬렉션을 활용하면 자바 코드와 상호작용하기가 훨씬 더 쉽다. 
+
+하지만 코을린에서는 자바보다 더 많은 기능을 쓸 수 있다.
+```kotlin
+val strings = listOf("first", "second", "fourteenth")
+println(strings.last())
+
+val numbers = setOf(1, 14, 2)
+println(numbers.max())
+```
+
+#### 함수를 호출하기 쉽게 만들기
+코틀린으로 작성한 함수를 호출할 때는 함수에 전달하는 인자 중 일부(또는 전부)의 이름을 명시할 수 있다.
+
+호출 시 인자 중 어느 하나라도 이름을 명시하고 나면 혼동을 막기 위해 그 뒤에 오는 모든 인자는 이름을 꼭 명시해야 한다.
+
+함수 선언에서 파라미터의 디폴트 값을 지정하여 오버로드 중 상당수를 피할 수 있다.
+
+```kotlin
+
+```
