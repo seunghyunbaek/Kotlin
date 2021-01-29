@@ -54,4 +54,9 @@ fun main() {
     val f = F()
     f.scatch()
     f.showOff()
+
+    val list = arrayOf("a", "b", "c")
+
+    val args = listOf("args: ", *list)
+    println(args)
 }
