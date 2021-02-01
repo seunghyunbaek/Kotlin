@@ -641,3 +641,36 @@ println(kotlinLogo.trimMargin(".")) // .문자와 그 직전 공백을 제거한
 프로그래밍 시 여러 줄 문자열이 요긴한 분야로 테스트를 꼽을 수 있다.  
 테스트에서는 여러 줄의 텍스트 출력을 만들어내는 연산을 실행하고 그 결과를 예상 결과와 비교해야 하는 경우가 자주 있다.  
 여러 줄 문자열은 테스트의 예상 출력을 작성할 때 가장 완벽한 해법이다.
+
+## 로컬함수와 확장
+코틀린에서는 함수에서 추출한 함수를 원 함수 내부에 중첩시킬 수 있다. 그렇게 하면 문법적인 부가 비용을 들이지 않고도 깔끔하게 코드를 조직할 수 있다.
+```kotlin
+class User(val id: Int, val name: String, val address: String)
+
+fun saveUser(user: User) {
+    fun validate(value: String, fieldName: String) {
+        if (value.isEmpty()) {
+            throw IllegalArgumentException("Can't save user ${user.id}: empty $fieldName")
+        }
+    }   
+    validate(user.name, "Name")
+    validate(user.address, "Address")
+}
+```
+로컬 함수는 자신이 속한 바깥 함수의 모든 파라미터와 변수를 사용할 수 있다.
+
+좀 더 개선하여 검증 로직을 user클래스를 확장한 함수로 만들 수도 있다.
+```kotlin
+fun User.validateBeforeSave() {
+    fun validate(value: String, fieldName: String) {
+        if (value.isEmpty()) {
+            throw IllegalArgumentException("Can't save user ${user.id}: empty $fieldName")
+        }
+    }
+    validate(name, "Name")
+    validate(address, "Address")
+}
+```
+이 경우 검증 로직은 User를 사용하는 다른 곳에서는 쓰이지 않는 기능이기 때문에 User에 포함시키고 싶지는 않다.  
+User를 간결하게 유지하면 생각해야 할 내용이 줄어들어서 더 쉽게 코드를 파악할 수 있다.  
+반면 한 객체만을 다루면서 객체의 비공개 데이터를 다룰 필요는 없는 함수는 확장 함수로 만들면 객체.멤버처럼 수신 객체를 지정하지 않고도 공개된 멤버 프로퍼티나 메소드에 점근할 수 있다.
