@@ -1,5 +1,6 @@
 package scratch
 
+import step4.Client
 import java.lang.StringBuilder
 
 class User(val name: String, val address: String) {
@@ -42,6 +43,34 @@ class F: E {
     override fun scatch() = println("F.scatch()")
 }
 
+object Payroll {
+    val allEmployees = arrayListOf<Person>()
+    fun calculateSalary() {
+        for (person in allEmployees) {
+            println(person)
+        }
+    }
+}
+
+data class Person(val name: String) {
+    object NameComparator: Comparator<Person> {
+        override fun compare(p1: Person, p2: Person): Int = p1.name.compareTo(p2.name)
+    }
+}
+
+
+interface JSONFactory<T> {
+    fun fromJSON(jsonText: String): T
+}
+
+class Person2(val name: String) {
+    companion object : JSONFactory<Person> {
+        override fun fromJSON(jsonText: String): Person {
+            return Person("dk")
+        }
+    }
+}
+
 fun main() {
     val user = User("A", "65")
     val user2 = User("B", "66")
@@ -59,4 +88,14 @@ fun main() {
 
     val args = listOf("args: ", *list)
     println(args)
+
+    val lee = Client("이계영", 4122)
+    println(lee.copy(postalCode = 4000))
+    println(lee)
+
+    Payroll.calculateSalary()
+
+    val p1 = Person("solob")
+    val p2 = Person("soloe")
+    println(Person.NameComparator.compare(p1, p2))
 }
